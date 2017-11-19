@@ -23,27 +23,29 @@ class Game:
 		# create a new Enemy with given level, health and name. Returns it to set to a variable
 
 	def listenForAttack(Timur, target): # target must be passed as obj
-		while True: # this lets us keep asking for an attack until we get a valid input
-			# print out every move that Timur has
-			attack_map = {}
-			print(Timur.moves)
-			for move in Timur.moves:
-				 #  attack_map[i] = move
-				print(move)
-				# enumerate allows us to assign numbers to moves
-				# this lets us just type the number of the attack without
-				# having to type out the whole name every time
-				print("{}: {}\nDamage: {}\n".format(move, move, move['Damage']))
-				# i (Autism)
-				# Damage: i['Damage'] (10)
-			selection = input("Select the number of the attack:")
-			if selection not in Timur.moves:
-				print("That's not a valid move.")
-				continue # go back to the beginning of the loop
+		while target.status != "Dead":
+			while True: # this lets us keep asking for an attack until we get a valid input
+				# print out every move that Timur has
+				attack_map = {}
+
+				for move, value in Timur.moves.items():
+					#  attack_map[i] = move
+					# enumerate allows us to assign numbers to moves
+					# this lets us just type the number of the attack without
+					# having to type out the whole name every time
+					print("{}\nDamage: {}\n".format(move.title(), value['Damage']))
+					# i (Autism)
+					# Damage: i['Damage'] (10)
+				selection = input("Select an attack:\n")
+				if selection not in Timur.moves:
+					print("That's not a valid move.")
+					continue # go back to the beginning of the loop
 
 
-			Timur.executeAttack(target, Timur.moves[selection])
-			break # break out of the loop
+				Timur.executeAttack(Timur.moves[selection.lower()], target)
+				# attacks are stored in lowercase to in case someone enters
+				# 'aUtiSm' we still want it to work
+				break # break out of the loop
 
 	def playersTurn(self):
 		pass

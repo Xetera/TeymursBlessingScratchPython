@@ -30,10 +30,10 @@ class Teymur:
 
 		# This part creates new moves, gives name, description and damage
 		# this is run on __init__ because it's the default moves
-		self.newmove("Dab", "Dabs on them hates", 1)
-		self.newmove("Monkey Yell", "Yells incredibly monkily", 2)
-		self.newmove("Seizure", "Has an intense seizure", 4)
-		self.newmove("Anime", "Passes one turn to watch anime", 0)
+		self.newmove("dab", "Dabs on them haters.", 1)
+		self.newmove("monkey Yell", "Yells incredibly monkily.", 2)
+		self.newmove("seizure", "Has an intense seizure.", 4)
+		self.newmove("anime", "Passes one turn to watch anime.", 0)
 
 	def increaseStats(Str=0, Dex=0, Int=0, Luck=0, Stm=0, Vit=0):
 		# these values are all 0 unless you state what they are
@@ -60,12 +60,12 @@ class Teymur:
 
 	def executeAttack(self, move, target, special=False):
 		# move must be passed as an obj, not name
-		self.dealDamage(name, target)
+		self.dealDamage(move, target)
 
 	def dealDamage(self, selected_move, enemy): # deal damage to enemy
-		move = self.moves[selected_move]
-		damage_amount = (self.stats['Strength'] * self.level) + 1
-		enemy.takeDamage(damage_amount)
+		print(selected_move)
+		damage_amount = (self.stats['Strength'] * self.level) + selected_move['Damage']
+		enemy.takeDamage(damage_amount, self)
 
 	def gainExperience(self, xp_amount): # I mean, makes sense
 		# should we be using a set xp here or gain some based on level %?
